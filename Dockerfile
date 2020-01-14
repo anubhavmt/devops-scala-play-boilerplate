@@ -26,14 +26,14 @@ FROM bulider
 COPY --from=bulider  /root/.sbt /root/.sbt
 COPY --from=bulider /root/.ivy2 /root/.ivy2
 
-COPY build.sbt $PROJECT_HOME/activator/build.sbt
-#build
 WORKDIR /app
+COPY build.sbt build.sbt
+
 COPY project /app/project
 COPY app /app/app
 #RUN $PROJECT_HOME/activator/activator compile
 
-RUN $PROJECT_HOME/activator/activator -help
+#RUN $PROJECT_HOME/activator/activator -help
 RUN $PROJECT_HOME/activator/activator clean compile universal:package-bin
 
 
