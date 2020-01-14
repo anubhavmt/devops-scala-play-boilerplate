@@ -31,9 +31,10 @@ COPY build.sbt $PROJECT_HOME/activator/build.sbt
 WORKDIR /app
 COPY project /app/project
 COPY app /app/app
-RUN $PROJECT_HOME/activator/activator compile
+#RUN $PROJECT_HOME/activator/activator compile
 
-RUN $PROJECT_HOME/activator/activator dist
+RUN $PROJECT_HOME/activator/activator -help
+RUN $PROJECT_HOME/activator/activator clean compile universal:package-bin
 
 
 ARG port="80"
@@ -48,9 +49,7 @@ VOLUME /logs
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 
-ARG target="app_build"
-RUN apt install tree
-RUN tree 
+ARG target="app_build" 
 COPY $target/contentengine-avengers /app
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
