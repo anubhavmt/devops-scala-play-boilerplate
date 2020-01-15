@@ -27,12 +27,8 @@ COPY --from=bulider  /root/.sbt /root/.sbt
 COPY --from=bulider /root/.ivy2 /root/.ivy2
 
 WORKDIR /app
-#COPY build.sbt build.sbt
 
 COPY . /app
-#RUN $PROJECT_HOME/activator/activator compile
-
-RUN $PROJECT_HOME/activator/activator clean compile dist
 
 ARG port="80"
 ENV PORT=$port
@@ -41,12 +37,11 @@ EXPOSE $PORT
 ARG jvm_heap_size="512m"
 ENV JVM_HEAP_SIZE=$jvm_heap_size
 
-VOLUME /logs
-
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 
-ARG target="app_build" 
-COPY $target/contentengine-avengers /app
+RUN $PROJECT_HOME/activator/activator clean compile dist
+
+RUN cp target/universal/play-scala-starter-example-1.0-SNAPSHOT.zip /app && unzip play-scala-starter-example-1.0-SNAPSHOT.zip
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
