@@ -6,7 +6,7 @@ import play.api.Logger
 import play.api.inject.ApplicationLifecycle
 import scala.concurrent.Future
 
-/**
+/*
  * This class demonstrates how to run code when the
  * application starts and stops. It starts a timer when the
  * application starts. When the application stops it prints out how
