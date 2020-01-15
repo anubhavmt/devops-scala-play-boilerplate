@@ -1,0 +1,62 @@
+stages:
+  - predev-build
+  - unit-test
+  - integration-test
+  - version
+  - build
+  - deploy-dev
+  - rollback-dev
+  - delete-dev
+  - create-release
+  - deploy-staging
+  - rollback-staging
+  - delete-staging
+  - deploy-prod
+  - rollback-prod
+  - delete-prod
+
+include:
+  - project: 'mindtickle-devops/ci-cd-templates'
+    file: '/build-predev-template.yml'
+
+  - project: 'mindtickle-devops/ci-cd-templates'
+    file: '/test-unit-template.yml'
+
+  - project: 'mindtickle-devops/ci-cd-templates'
+    file: '/test-integration-template.yml'
+
+  - project: 'mindtickle-devops/ci-cd-templates'
+    file: '/version-template.yml'
+
+  - project: 'mindtickle-devops/ci-cd-templates'
+    file: '/build-template.yml'
+
+  - project: 'mindtickle-devops/ci-cd-templates'
+    file: '/deploy-dev-template.yml'
+
+  - project: 'mindtickle-devops/ci-cd-templates'
+    file: '/rollback-dev-template.yml'
+
+  - project: 'mindtickle-devops/ci-cd-templates'
+    file: '/delete-dev-template.yml'
+
+  - project: 'mindtickle-devops/ci-cd-templates'
+    file: '/create-release-template.yml'
+
+  - project: 'mindtickle-devops/ci-cd-templates'
+    file: '/deploy-staging-template.yml'
+
+  - project: 'mindtickle-devops/ci-cd-templates'
+    file: '/rollback-staging-template.yml'
+
+  - project: 'mindtickle-devops/ci-cd-templates'
+    file: '/delete-staging-template.yml'
+
+  - project: 'mindtickle-devops/ci-cd-templates'
+    file: '/deploy-prod-template.yml'
+
+  - project: 'mindtickle-devops/ci-cd-templates'
+    file: '/rollback-prod-template.yml'
+
+  - project: 'mindtickle-devops/ci-cd-templates'
+    file: '/delete-prod-template.yml'
